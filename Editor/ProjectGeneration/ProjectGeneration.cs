@@ -776,6 +776,13 @@ namespace VSCodeEditor
             var langElement = new XElement("LangVersion") { Value = langVersion };
             commonPropertyGroup.Add(langElement);
 
+            // nullable
+            if (otherArguments["nullable"].Any(s => s == "enable"))
+            {
+                var nullableElement = new XElement("Nullable") { Value = "enable" };
+                commonPropertyGroup.Add(nullableElement);
+            }
+
             // Allow unsafe code
             bool allowUnsafeCode =
                 assembly.compilerOptions.AllowUnsafeCode | responseFilesData.Any(x => x.Unsafe);
